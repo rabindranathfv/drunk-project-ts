@@ -1,0 +1,48 @@
+image: node:latest
+
+stages:
+  - install_dependencies
+  - test
+
+cache:
+  paths:
+    - node_modules/
+
+install_dependencies:
+  stage: install_dependencies
+  script:
+    - node -v
+    - npm -v
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
+
+linter:
+  stage: test
+  cache:
+    policy: pull
+  script:
+    - npm run format
+    - npm run lint
+  dependencies:
+    - install_dependencies
+
+functional_test:
+  stage: test
+  cache:
+    policy: pull
+  script:
+    - npm run test-functional
+  dependencies:
+    - install_dependencies
+
+coverage:
+  stage: test
+  cache:
+    policy: pull
+  script:
+    - npm run test-coverage
+  coverage: '/Stmts.*?(\d+(?:\.\d+)?)%/'
+  dependencies:
+    - install_dependencies
