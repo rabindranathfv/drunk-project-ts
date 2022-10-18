@@ -1,7 +1,7 @@
 class UserService {
   constructor() {}
 
-  public async registerUser(user: any) {
+  public async registerUser(_user: any) {
     try {
       // TODO: add businnes logic
     } catch (error) {
@@ -9,7 +9,7 @@ class UserService {
     }
   }
 
-  public async loginUser(user: any) {
+  public async loginUser(_user: any) {
     try {
       // TODO: add businnes logic
     } catch (error) {

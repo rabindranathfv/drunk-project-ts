@@ -18,11 +18,11 @@
     "skipLibCheck": true,
   },
   "include": [
-    "src/**/*.ts", "test/*.*.ts"],
+    "src/**/*.ts"],
   "exclude": [
     "node_modules",
     "src/logs",
-    "src/tests",
+    "src/test",
     "jest.config.js"
   ]
 }

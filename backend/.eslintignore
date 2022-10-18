@@ -1,2 +1,6 @@
 /build
 /test
+/backend/test/
+/backend/build/
+/backend/coverage
+/backend/postman-collection
