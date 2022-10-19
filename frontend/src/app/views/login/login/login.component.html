@@ -1,90 +1,11 @@
 <div class="container login-container">
   <div class="row">
-      <div class="col-md-6 login-form-1">
-          <h3>Ingreso</h3>
-          <form onSubmit={loginSubmit}>
-              <div class="form-group mb-2">
-                  <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Correo"
-                      name="loginEmail"
-                      value={loginEmail}
-                      onChange={onLoginInputChange}
-                  />
-              </div>
-              <div class="form-group mb-2">
-                  <input
-                      type="password"
-                      class="form-control"
-                      placeholder="Contraseña"
-                      name="loginPassword"
-                      value={loginPassword}
-                      onChange={onLoginInputChange}
-                  />
-              </div>
-              <div class="d-grid gap-2">
-                  <input
-                      type="submit"
-                      class="btnSubmit"
-                      value="Login"
-                  />
-              </div>
-          </form>
+      <div class="col-md-6 login-form">
+          <app-login-form> </app-login-form>
       </div>
 
-      <div class="col-md-6 login-form-2">
-          <h3>Registro</h3>
-          <form onSubmit={registerSubmit}>
-              <div class="form-group mb-2">
-                  <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Nombre"
-                      name="registerName"
-                      value={registerName}
-                      onChange={onRegisterInputChange}
-                  />
-              </div>
-              <div class="form-group mb-2">
-                  <input
-                      type="email"
-                      class="form-control"
-                      placeholder="Correo"
-                      name="registerEmail"
-                      value={registerEmail}
-                      onChange={onRegisterInputChange}
-                  />
-              </div>
-              <div class="form-group mb-2">
-                  <input
-                      type="password"
-                      class="form-control"
-                      placeholder="Contraseña"
-                      name="registerPassword"
-                      value={registerPassword}
-                      onChange={onRegisterInputChange}
-                  />
-              </div>
-
-              <div class="form-group mb-2">
-                  <input
-                      type="password"
-                      class="form-control"
-                      placeholder="Repita la contraseña"
-                      name="registerPassword2"
-                      value={registerPassword2}
-                      onChange={onRegisterInputChange}
-                  />
-              </div>
-
-              <div class="d-grid gap-2">
-                  <input
-                      type="submit"
-                      class="btnSubmit"
-                      value="Crear cuenta" />
-              </div>
-          </form>
+      <div class="col-md-6 register-form">
+          <app-register-form> </app-register-form>
       </div>
   </div>
 </div>

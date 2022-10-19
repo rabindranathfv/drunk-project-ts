@@ -1,0 +1,52 @@
+
+  <h3 id="register-title">Registro</h3>
+  <form id="register-form" onSubmit={registerSubmit}>
+      <div class="form-group mb-2">
+          <input
+              type="text"
+              class="form-control"
+              placeholder="Nombre"
+              name="registerName"
+              value={registerName}
+              onChange={onRegisterInputChange}
+          />
+      </div>
+      <div class="form-group mb-2">
+          <input
+              type="email"
+              class="form-control"
+              placeholder="Correo"
+              name="registerEmail"
+              value={registerEmail}
+              onChange={onRegisterInputChange}
+          />
+      </div>
+      <div class="form-group mb-2">
+          <input
+              type="password"
+              class="form-control"
+              placeholder="Contraseña"
+              name="registerPassword"
+              value={registerPassword}
+              onChange={onRegisterInputChange}
+          />
+      </div>
+
+      <div class="form-group mb-2">
+          <input
+              type="password"
+              class="form-control"
+              placeholder="Repita la contraseña"
+              name="registerPassword2"
+              value={registerPassword2}
+              onChange={onRegisterInputChange}
+          />
+      </div>
+
+      <div class="d-grid gap-2">
+          <input
+              type="submit"
+              class="btn-submit-register"
+              value="Crear cuenta" />
+      </div>
+  </form>
