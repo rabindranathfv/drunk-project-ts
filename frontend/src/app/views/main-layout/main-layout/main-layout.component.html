@@ -1,45 +1,14 @@
 <div class="container">
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Drunk APP</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-        </ul>
-          <div class="container-fluid username-content">
-            <span id="display-username" class="navbar-text align-items-left">
-              <i class="far fa-user"></i> USERNAME
-            </span>
-          </div>
-      </div>
-    </div>
-  </nav>
+  <app-navbar> </app-navbar>
 
   <main class="container">
-    <div class="bg-light p-5 rounded">
-      <h1>Navbar example</h1>
-      <p class="lead">This example is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it will remain fixed to the top of your browser’s viewport.</p>
-      <a class="btn btn-lg btn-primary" href="/docs/5.0/components/navbar/" role="button">View navbar docs &raquo;</a>
-    </div>
+    <app-jumbotron></app-jumbotron>
 
-    <div class="row">
-      <div class="col-md-8">
-        <p> 1era col</p>
-      </div>
-      <div class="col-md-4">
-        <p> 2da col</p>
-      </div>
-    </div>
+    <app-search-bar></app-search-bar>
 
-    <div>
-      <a routerLink="/beers/b1" routerLinkActive="active" ariaCurrentWhenActive="page">B1</a>
-      <a routerLink="/beers/b2" routerLinkActive="active" ariaCurrentWhenActive="page"> - B2</a>
-    </div>
+    <hr class="divider">
+
+    <!-- <app-loading *ngIf="loading"></app-loading> -->
+    <router-outlet></router-outlet>
   </main>
-  <router-outlet></router-outlet>
 </div>
