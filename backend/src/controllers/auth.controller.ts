@@ -17,8 +17,9 @@ class AuthController {
 
   public renewTokenCtrl = async (_req: Request, res: Response, next: NextFunction) => {
     try {
-      const user = await this.authService.renewToken();
-      res.status(201).json(user);
+      const { id, name } = res.locals;
+      const token = await this.authService.renewToken(id, name);
+      res.status(201).json({ ok: true, message: `renoval token succesfully`, token });
     } catch (error) {
       next(error);
       console.log(error);

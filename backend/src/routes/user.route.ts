@@ -85,7 +85,15 @@ class UserRoute implements Routes {
      *                  description: users information
      *                  $ref: '#/components/schemas/User'
      */
-    this.router.post(`${this.path}`, this.userController.createUser);
+    this.router.post(`${this.path}`, this.userController.createUserCtrl);
+
+    this.router.get(`${this.path}`, this.userController.getUsersCtrl);
+
+    this.router.get(`${this.path}/:id`, this.userController.getUserByIdCtrl);
+
+    this.router.put(`${this.path}/:id`, this.userController.updateUserCtrl);
+
+    this.router.delete(`${this.path}/:id`, this.userController.deleteUserCtrl);
   }
 }
 

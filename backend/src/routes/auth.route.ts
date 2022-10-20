@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import AuthController from '../controllers/auth.controller';
 import { Routes } from '../interfaces/route.interface';
+import { validateSesion } from './../middleware/validateSession.middleware';
 
 /**
  * @swagger
@@ -162,7 +163,7 @@ class AuthRoute implements Routes {
      *                  type: string
      *                  description: user's session token
      */
-    this.router.post(`${this.path}/renew`, this.authController.renewTokenCtrl);
+    this.router.get(`${this.path}/renew`, validateSesion,  this.authController.renewTokenCtrl);
   }
 }
 

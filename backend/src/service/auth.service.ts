@@ -28,9 +28,11 @@ class AuthService {
     }
   }
 
-  public async renewToken() {
+  public async renewToken(id: string, name: string) {
     try {
-      // TODO: add businnes logic
+      const newToken = await generateJWT(id, name);
+
+      return newToken;
     } catch (error) {
       throw new Error('there is some troubles try to renew token');
     }
