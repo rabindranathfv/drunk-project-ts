@@ -1,52 +1,86 @@
 
-  <h3 id="register-title">Registro</h3>
-  <form id="register-form" onSubmit={registerSubmit}>
-      <div class="form-group mb-2">
-          <input
-              type="text"
-              class="form-control"
-              placeholder="Nombre"
-              name="registerName"
-              value={registerName}
-              onChange={onRegisterInputChange}
-          />
-      </div>
-      <div class="form-group mb-2">
-          <input
-              type="email"
-              class="form-control"
-              placeholder="Correo"
-              name="registerEmail"
-              value={registerEmail}
-              onChange={onRegisterInputChange}
-          />
-      </div>
-      <div class="form-group mb-2">
-          <input
-              type="password"
-              class="form-control"
-              placeholder="Contraseña"
-              name="registerPassword"
-              value={registerPassword}
-              onChange={onRegisterInputChange}
-          />
-      </div>
+<h3 id="register-title">Registro</h3>
+<form id="register-form" [formGroup]="registerForm" (ngSubmit)="submitRegister()">
+    <div class="form-group mb-2">
+        <input
+            type="text"
+            class="form-control"
+            [ngClass]="(
+                registerForm.get('name')?.dirty ||
+                registerForm.get('name')?.touched
+               ) &&
+               registerForm.get('name')?.invalid ? 'is-invalid' : ''"
+            placeholder="Enter your full name,"
+            name="name"
+            formControlName="name"
+        />
+        <div class="invalid-feedback">
+            <span>Ups there is something wrong please check it, this field is mandatory</span>
+         </div>
+    </div>
+    <div class="form-group mb-2">
+        <input
+            type="email"
+            class="form-control"
+            [ngClass]="(
+                registerForm.get('email')?.dirty ||
+                registerForm.get('email')?.touched
+               ) &&
+               registerForm.get('email')?.invalid ? 'is-invalid' : ''"
+            placeholder="Enter your email"
+            name="email"
+            formControlName="email"
+        />
+        <div class="invalid-feedback">
+            <span>Ups there is something wrong please check it, this field is mandatory</span>
+         </div>
+    </div>
+    <div class="form-group mb-2">
+        <input
+            type="password"
+            class="form-control"
+            [ngClass]="(
+                registerForm.get('password')?.dirty ||
+                registerForm.get('password')?.touched
+               ) &&
+               registerForm.get('password')?.invalid ? 'is-invalid' : ''"
+            placeholder="Enter your password"
+            name="password"
+            formControlName="password"
+        />
+        <div class="invalid-feedback">
+            <span>Ups there is something wrong please check it, this field is mandatory</span>
+         </div>
+    </div>
 
-      <div class="form-group mb-2">
-          <input
-              type="password"
-              class="form-control"
-              placeholder="Repita la contraseña"
-              name="registerPassword2"
-              value={registerPassword2}
-              onChange={onRegisterInputChange}
-          />
-      </div>
+    <div class="form-group mb-2">
+        <input
+            type="password"
+            class="form-control"
+            [ngClass]="(
+                registerForm.get('confirmPassword')?.dirty ||
+                registerForm.get('confirmPassword')?.touched
+               ) &&
+               registerForm.get('confirmPassword')?.invalid ? 'is-invalid' : ''"
+            placeholder="Repeat your password"
+            name="confirmPassword"
+            formControlName="confirmPassword"
+        />
+        <div class="invalid-feedback">
+            <span>Ups there is something wrong please check it, this field is mandatory</span>
+         </div>
+    </div>
 
-      <div class="d-grid gap-2">
-          <input
-              type="submit"
-              class="btn-submit-register"
-              value="Crear cuenta" />
-      </div>
-  </form>
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn-submit-register" [disabled]="registerForm.invalid"
+        [ngClass]="{'btn-submit-register-disabled': registerForm.invalid}"
+        >
+            <ng-container *ngIf="registerForm.invalid; else elseTemplate">
+                <span>Register <i class="fas fa-lock"></i></span>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <span>Register <i class="fas fa-check"></i></span>
+            </ng-template>
+        </button>
+    </div>
+</form>

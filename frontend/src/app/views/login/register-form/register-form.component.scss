@@ -12,8 +12,18 @@
   padding: 1.5%;
   border: none;
   background-color: #fff;
-  color: #0062cc;
+  color: #d4a326;
   cursor: pointer;
+}
+
+.btn-submit-register-disabled {
+  border-radius: 1rem;
+  padding: 1.5%;
+  border: none;
+  background-color: #fff;
+  color: red;
+  cursor: pointer;
+  text-align: center;
 }
 
 .forget-pwd {

@@ -16,6 +16,7 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "skipLibCheck": true,
+    "strictTemplates": false
   },
   "include": [
     "src/**/*.ts"],
