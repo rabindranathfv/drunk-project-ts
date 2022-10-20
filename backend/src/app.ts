@@ -17,6 +17,7 @@ import { logger, stream } from './utils/logger';
 import { optionsSwagger } from './config/swagger.config';
 
 import { API_BASE_ROUTE } from './constants';
+import { dbConnection } from './db/mongo.config';
 
 class App {
   public app: express.Application;
@@ -40,7 +41,7 @@ class App {
     this.server = this.app.listen(this.port, () => {
       displayRoutes(this.app);
       logger.info(`=================================`);
-      logger.info(`======= ENV: ${this.env} =======`);
+      logger.info(`======= ENV: ${this.env} ========`);
       logger.info(`🚀 App listening on the port ${this.port}`);
       logger.info(`=================================`);
     });
@@ -56,8 +57,8 @@ class App {
     return this.app;
   }
 
-  private connectToDatabase() {
-    // start DB instance Here
+  private async connectToDatabase() {
+    await dbConnection();
   }
 
   private initializeMiddlewares() {

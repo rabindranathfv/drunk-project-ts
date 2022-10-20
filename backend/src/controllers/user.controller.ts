@@ -1,4 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
+// import { User } from '../interfaces/user.interface';
+// import { UserWithAuth } from '../types/types';
 import UserService from './../service/user.service';
 
 class UserController {
@@ -6,33 +8,14 @@ class UserController {
 
   constructor() {}
 
-  public registerUserCtrl = async (req: Request, res: Response, next: NextFunction) => {
+  public createUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const user = await this.userService.registerUser(req.body);
-      res.status(200).json(user);
-    } catch (error) {
-      next(error);
-      console.log(error);
-    }
-  };
+      const userData = req.body;
+      const createUserData = await this.userService.createUser(userData);
 
-  public loginUserCtrl = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const user = await this.userService.loginUser(req.body);
-      res.status(201).json(user);
+      res.status(201).json({ user: createUserData, message: `user ${userData.email} has been created` });
     } catch (error) {
       next(error);
-      console.log(error);
-    }
-  };
-
-  public renewUserTokenCtrl = async (_req: Request, res: Response, next: NextFunction) => {
-    try {
-      const user = await this.userService.renewUserToken();
-      res.status(201).json(user);
-    } catch (error) {
-      next(error);
-      console.log(error);
     }
   };
 }

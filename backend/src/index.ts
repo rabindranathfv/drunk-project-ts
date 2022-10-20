@@ -1,9 +1,10 @@
 import App from './app';
 import validateEnv from './utils/validateEnvs';
-import userRoute from './routes/user.route';
+import UserRoute from './routes/user.route';
+import AuthRoute from './routes/auth.route';
 
 validateEnv();
 
-const app = new App([new userRoute()]);
+const app = new App([new UserRoute(), new AuthRoute()]);
 
 app.listen();
