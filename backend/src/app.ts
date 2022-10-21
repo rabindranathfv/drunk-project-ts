@@ -13,6 +13,7 @@ import { corsConfig } from './config/cors.config';
 import { Routes } from './interfaces/route.interface';
 
 import errorMiddleware from './middleware/error.middleware';
+import { rateLimiterUsingThirdParty } from './middleware/rateLimiter.middleware';
 import { logger, stream } from './utils/logger';
 import { optionsSwagger } from './config/swagger.config';
 
@@ -69,6 +70,7 @@ class App {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
+    this.app.use(rateLimiterUsingThirdParty);
   }
 
   private initializeRoutes(routes: Routes[]) {
