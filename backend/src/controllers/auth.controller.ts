@@ -9,7 +9,7 @@ class AuthController {
       const userData = req.body;
       const { findUser, token } = await this.authService.logIn(userData);
 
-      res.status(200).json({ data: findUser, token, message: `login succesfully` });
+      res.status(200).json({ ok: true, data: findUser, token, message: `login succesfully` });
     } catch (error) {
       next(error);
     }

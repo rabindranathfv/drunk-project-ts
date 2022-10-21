@@ -14,7 +14,6 @@ export const validateSesion = (req: Request, res: Response, next: NextFunction) 
 
   try {
     const tokenVerify = verify(token, JWT_SECRET_SEED ?? 'development-seed') as Token;
-    console.log('🚀 ~ file: validateSession.middleware.ts ~ line 17 ~ validateSesion ~ tokenVerify', tokenVerify);
     res.locals.id = tokenVerify.id;
     res.locals.name = tokenVerify.name;
     res.locals.expiresIn = tokenVerify.exp;

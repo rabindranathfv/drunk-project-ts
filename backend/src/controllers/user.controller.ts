@@ -14,7 +14,7 @@ class UserController {
       const userData = req.body;
       const createUserData = await this.userService.createUser(userData);
 
-      res.status(201).json({ data: createUserData, message: `user ${userData.email} has been created` });
+      res.status(201).json({ ok: true, data: createUserData, message: `user ${userData.email} has been created` });
     } catch (error) {
       next(error);
     }
@@ -24,7 +24,7 @@ class UserController {
     try {
       const findAllUsersData: User[] = await this.userService.findAllUser();
 
-      res.status(200).json({ data: findAllUsersData, message: 'findAll all Users successfully' });
+      res.status(200).json({ ok: true, data: findAllUsersData, message: 'findAll all Users successfully' });
     } catch (error) {
       next(error);
     }
@@ -35,7 +35,7 @@ class UserController {
       const userId: string = req.params.id;
       const findOneUserData: User = await this.userService.findUserById(userId);
 
-      res.status(200).json({ data: findOneUserData, message: `getUserById succesfully ` });
+      res.status(200).json({ ok: true, data: findOneUserData, message: `getUserById succesfully ` });
     } catch (error) {
       next(error);
     }
@@ -47,7 +47,7 @@ class UserController {
       const userData = req.body;
       const updateUserData: User = await this.userService.updateUser(userId, userData);
 
-      res.status(200).json({ data: updateUserData, message: `updatedUser successfully` });
+      res.status(200).json({ ok: true, data: updateUserData, message: `updatedUser successfully` });
     } catch (error) {
       next(error);
     }
@@ -58,7 +58,7 @@ class UserController {
       const userId: string = req.params.id;
       const deleteUserData: User = await this.userService.deleteUser(userId);
 
-      res.status(200).json({ data: deleteUserData, message: 'deleted' });
+      res.status(200).json({ ok: true, data: deleteUserData, message: 'deleted' });
     } catch (error) {
       next(error);
     }
