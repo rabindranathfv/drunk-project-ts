@@ -28,8 +28,12 @@ class UserService {
   }
 
   public async findAllUser(): Promise<User[]> {
-    const users: User[] = await this.users.find();
-    return users;
+    try {
+      const users: User[] = await this.users.find();
+      return users;
+    } catch (error) {
+      throw new Error('there is some troubles try to find all users');
+    }
   }
 
   public async findUserById(userId: string): Promise<User> {

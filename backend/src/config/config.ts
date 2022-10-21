@@ -16,4 +16,5 @@ export const {
   API_VERSION,
   JWT_SECRET_SEED,
   DB_CNN,
+  EXTERNAL_API,
 } = process.env;
