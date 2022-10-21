@@ -3,6 +3,8 @@ import BeerModel from './../models/beer.models';
 import axios, { AxiosResponse } from 'axios';
 import { Beer } from '../interfaces/beer.interface';
 import { logger } from '../utils/logger';
+import { HttpException } from '../exceptions/HttpException';
+import { isEmpty } from '../utils/isEmpty';
 
 class BeerService {
   public beers = BeerModel;
@@ -34,6 +36,19 @@ class BeerService {
       return beers;
     } catch (error) {
       throw new Error('there is some troubles try to getAllBeers');
+    }
+  }
+
+  public async findBeerById(beerId: string): Promise<Beer> {
+    try {
+      if (isEmpty(beerId)) throw new HttpException(400, 'beerId is empty');
+
+      const findBeer: Beer | null = await this.beers.findOne({ _id: beerId });
+      if (!findBeer) throw new HttpException(409, "Beer doesn't exist");
+
+      return findBeer;
+    } catch (error) {
+      throw new HttpException(500, 'Server side Error troubles for get specific Beer');
     }
   }
 }

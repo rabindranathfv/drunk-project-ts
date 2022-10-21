@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { EXTERNAL_API } from '../config/config';
+import { Beer } from '../interfaces/beer.interface';
 import BeerService from '../service/beer.service';
 
 class BeerController {
@@ -22,6 +23,17 @@ class BeerController {
     } catch (error) {
       next(error);
       console.log(error);
+    }
+  };
+
+  public getBeerByIdCtrl = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const beerId: string = req.params.id;
+      const findOneBeerData: Beer = await this.beerService.findBeerById(beerId);
+
+      res.status(200).json({ ok: true, data: findOneBeerData, message: `getBeerById succesfully` });
+    } catch (error) {
+      next(error);
     }
   };
 }

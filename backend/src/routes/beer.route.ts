@@ -132,6 +132,9 @@ class BeerRoute implements Routes {
      *                  description: users information
      */
     this.router.get(`${this.path}`, this.beerController.getAllBeersCtrl);
+
+    // TODO: Add DOC
+    this.router.get(`${this.path}/:id`, this.beerController.getBeerByIdCtrl);
   }
 }
 
