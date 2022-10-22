@@ -49,7 +49,46 @@ class BeerService {
 
       return findBeer;
     } catch (error) {
-      throw new HttpException(500, 'Server side Error troubles for get specific Beer');
+      throw new HttpException(500, 'Server side Error troubles for get specific Beer MMGV');
+    }
+  }
+
+  public async getBeerFilterByNameOrIngridients(query: any): Promise<Beer[] | null> {
+    try {
+      console.log('SERVICE getBeerFilterByNameOrIngridients***', query);
+      // const findBeer = await this.beers.aggregate(
+      //   {$group:{"_id":"$name","name":{$first:"$name"},"count":{$sum:1}}},
+      // );
+
+      return null;
+    } catch (error) {
+      throw new HttpException(500, 'Server side Error troubles for filters on beers');
+    }
+  }
+
+  public async getBeersTopIngridients(query: any): Promise<Beer[] | null> {
+    try {
+      console.log('SERVICE getBeersTopIngridients***', query);
+      // const findBeer = await this.beers.aggregate(
+      //   {$group:{"_id":"$name","name":{$first:"$name"},"count":{$sum:1}}},
+      // );
+
+      return null;
+    } catch (error) {
+      throw new HttpException(500, 'Server side Error troubles for top ingridients in beers');
+    }
+  }
+
+  public async getBeersBySearch(query: any): Promise<Beer[] | null> {
+    try {
+      console.log('SERVICE getBeersBySearch***', query);
+      // const findBeer = await this.beers.aggregate(
+      //   {$group:{"_id":"$name","name":{$first:"$name"},"count":{$sum:1}}},
+      // );
+
+      return null;
+    } catch (error) {
+      throw new HttpException(500, 'Server side Error troubles for search beer by parameters');
     }
   }
 }

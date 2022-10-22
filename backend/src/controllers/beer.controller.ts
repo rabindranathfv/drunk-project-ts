@@ -49,12 +49,48 @@ class BeerController {
 
   public getBeerByIdCtrl = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const requestId = rTracer.id();
-      console.log('🚀 ~ file: beer.controller.ts ~ line 38 ~ BeerController ~ getBeerByIdCtrl= ~ requestId', requestId);
       const beerId: string = req.params.id;
       const findOneBeerData: Beer = await this.beerService.findBeerById(beerId);
 
       res.status(200).json({ ok: true, data: findOneBeerData, message: `getBeerById succesfully` });
+    } catch (error) {
+      next(error);
+    } finally {
+      await this.saveAudits(req, res);
+    }
+  };
+
+  public getBeerFilterByNameOrIngridientsCtrl = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      console.log('QUERY PARAMS***', req.query);
+      const findBeersData: Beer[] | null = await this.beerService.getBeerFilterByNameOrIngridients(req.query);
+
+      res.status(200).json({ ok: true, data: findBeersData, message: `getBeerFilterByNameOrIngridients succesfully` });
+    } catch (error) {
+      next(error);
+    } finally {
+      await this.saveAudits(req, res);
+    }
+  };
+
+  public getBeersTopIngridientsCtrl = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      console.log('QUERY PARAMS***', req.query);
+      const findBeersData: Beer[] | null = await this.beerService.getBeersTopIngridients(req.query);
+
+      res.status(200).json({ ok: true, data: findBeersData, message: `getBeersTopIngridients succesfully` });
+    } catch (error) {
+      next(error);
+    } finally {
+      await this.saveAudits(req, res);
+    }
+  };
+
+  public getBeersBySearchCtrl = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const findBeersData: Beer[] | null = await this.beerService.getBeersBySearch(req.query);
+
+      res.status(200).json({ ok: true, data: findBeersData, message: `getBeersBySearch succesfully` });
     } catch (error) {
       next(error);
     } finally {

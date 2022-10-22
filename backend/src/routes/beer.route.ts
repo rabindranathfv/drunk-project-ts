@@ -98,6 +98,15 @@ class BeerRoute implements Routes {
      */
     this.router.post(`${this.path}`, this.beerController.loadBeersCtrl);
 
+    // TODO: Add DOC
+    this.router.get(`${this.path}/search`, this.beerController.getBeersTopIngridientsCtrl);
+
+    // TODO: Add DOC
+    this.router.get(`${this.path}/ingridients/`, this.beerController.getBeersTopIngridientsCtrl);
+
+    // TODO: Add DOC
+    this.router.get(`${this.path}/filter`, this.beerController.getBeerFilterByNameOrIngridientsCtrl);
+
     // TODO: FIX THIS DOC BASED ON BEER
     /**
      * @swagger
