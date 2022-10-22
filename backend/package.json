@@ -19,6 +19,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "bcrypt": "^5.1.0",
+    "cls-rtracer": "^2.6.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
@@ -28,6 +29,7 @@
     "express": "^4.18.1",
     "express-rate-limit": "^6.6.0",
     "express-routemap": "^1.6.0",
+    "flatted": "^3.2.7",
     "helmet": "^6.0.0",
     "hpp": "^0.2.3",
     "jsonwebtoken": "^8.5.1",

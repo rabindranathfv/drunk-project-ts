@@ -1,10 +1,11 @@
-// import { HttpException } from '../exceptions/HttpException';
-import BeerModel from './../models/beer.models';
 import axios, { AxiosResponse } from 'axios';
-import { Beer } from '../interfaces/beer.interface';
+
 import { logger } from '../utils/logger';
 import { HttpException } from '../exceptions/HttpException';
 import { isEmpty } from '../utils/isEmpty';
+
+import BeerModel from './../models/beer.models';
+import { Beer } from '../interfaces/beer.interface';
 
 class BeerService {
   public beers = BeerModel;
