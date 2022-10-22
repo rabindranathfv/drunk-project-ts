@@ -1,0 +1,26 @@
+version: '3.0'
+
+# Services to run
+services:
+  angular-app: # name of frontend service
+    build: frontend/reignApp/ # specify the directory of the Dockerfile
+    container_name: frontend-app
+    ports:
+      - 4200:4200
+    restart: always
+  
+  express-api: # name of backend service
+    build: backend/reignApi/src/ # specify the directory of the Dockerfile
+    container_name: backend-api
+    ports:
+      - 3000:3000
+    restart: always
+    links:
+      - database
+
+  database: # name of BD service
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    restart: always
