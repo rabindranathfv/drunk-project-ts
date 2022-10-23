@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { Routes } from '../interfaces/route.interface';
+import { validateSesion } from '../middleware/validateSession.middleware';
 import BeerController from './../controllers/beer.controller';
 
 // TODO: Update swagger definitions for beer endpoints
@@ -99,13 +100,13 @@ class BeerRoute implements Routes {
     this.router.post(`${this.path}`, this.beerController.loadBeersCtrl);
 
     // TODO: Add DOC
-    this.router.get(`${this.path}/search/:text`, this.beerController.getBeersBySearchCtrl);
+    this.router.get(`${this.path}/search/:text`, validateSesion, this.beerController.getBeersBySearchCtrl);
 
     // TODO: Add DOC
-    this.router.get(`${this.path}/ingridients`, this.beerController.getBeersTopIngridientsCtrl);
+    this.router.get(`${this.path}/ingridients`, validateSesion, this.beerController.getBeersTopIngridientsCtrl);
 
     // TODO: Add DOC
-    this.router.get(`${this.path}/filter`, this.beerController.getBeerFilterByNameOrIngridientsCtrl);
+    this.router.get(`${this.path}/filter`, validateSesion, this.beerController.getBeerFilterByNameOrIngridientsCtrl);
 
     // TODO: FIX THIS DOC BASED ON BEER
     /**
@@ -140,10 +141,10 @@ class BeerRoute implements Routes {
      *                    $ref: '#/components/schemas/User'
      *                  description: users information
      */
-    this.router.get(`${this.path}`, this.beerController.getAllBeersCtrl);
+    this.router.get(`${this.path}`, validateSesion , this.beerController.getAllBeersCtrl);
 
     // TODO: Add DOC
-    this.router.get(`${this.path}/:id`, this.beerController.getBeerByIdCtrl);
+    this.router.get(`${this.path}/:id`, validateSesion , this.beerController.getBeerByIdCtrl);
   }
 }
 
