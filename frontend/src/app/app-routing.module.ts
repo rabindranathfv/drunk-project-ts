@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MainLayoutComponent } from './views/main-layout/main-layout/main-layout.component';
 import { LoginComponent } from './views/login/login/login.component';
+import { AuthGuard } from './guards/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('./views/beer/beer.module').then((m) => m.BeerModule),
       },
