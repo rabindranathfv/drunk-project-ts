@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
+import { UserService } from 'src/app/services/user/user.service';
 import Validation from 'src/app/validators/password-match.validator';
 
 @Component({
@@ -17,19 +18,14 @@ import Validation from 'src/app/validators/password-match.validator';
 })
 export class RegisterFormComponent implements OnInit {
   public registerForm!: FormGroup;
-  constructor(
-    private route: Router,
-    private fb: FormBuilder,
-    private storageService: StorageService,
-    private authService: AuthService
-  ) {}
+  public registered: boolean;
+  public user: any;
+  constructor(private fb: FormBuilder, private userService: UserService) {
+    this.registered = false;
+  }
 
   ngOnInit(): void {
     this.generateRegisterForm();
-  }
-
-  public redirect() {
-    this.route.navigate(['/beers']);
   }
 
   get f(): { [key: string]: AbstractControl } {
@@ -64,20 +60,26 @@ export class RegisterFormComponent implements OnInit {
     }
 
     const { name, email, password } = this.registerForm.value;
-    this.authService.register({ name, email, password }).subscribe({
-      next: (resp: any) => {
-        console.log('RESPONSE***', resp);
+    this.userService.register({ name, email, password }).subscribe({
+      next: ({ data }: any) => {
+        this.registered = !this.registered;
+        this.user = data;
+        this.registerDelay();
+        this.onReset();
       },
       error: (error) => {
         console.log(error);
       },
     });
-
-    this.redirect();
-    this.onReset();
   }
 
   public onReset(): void {
     this.registerForm.reset();
+  }
+
+  public registerDelay(): void {
+    setTimeout(() => {
+      this.registered = !this.registered;
+    }, 5000);
   }
 }

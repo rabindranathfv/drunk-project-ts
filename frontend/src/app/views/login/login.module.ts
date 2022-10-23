@@ -10,11 +10,12 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
+import { UserService } from 'src/app/services/user/user.service';
 
 @NgModule({
   declarations: [LoginComponent, LoginFormComponent, RegisterFormComponent],
   imports: [CommonModule, ReactiveFormsModule, HttpClientModule, RouterModule],
   exports: [LoginComponent, LoginFormComponent, RegisterFormComponent],
-  providers: [StorageService, AuthService],
+  providers: [StorageService, AuthService, UserService],
 })
 export class LoginModule {}

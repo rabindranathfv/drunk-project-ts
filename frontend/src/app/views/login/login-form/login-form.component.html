@@ -1,4 +1,9 @@
   <h3 id="login-title">Ingreso</h3>
+
+  <ng-container *ngIf="errorLogin">
+    <p class="text-center">An Error happen, please check your credentials!</p>
+  </ng-container>
+
   <form id="login-form" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
       <div class="form-group mb-2">
           <input

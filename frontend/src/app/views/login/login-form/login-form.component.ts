@@ -12,13 +12,16 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 })
 export class LoginFormComponent implements OnInit {
   public loginForm!: FormGroup;
+  public errorLogin: boolean;
 
   constructor(
     private route: Router,
     private fb: FormBuilder,
     private storageService: StorageService,
     private authService: AuthService
-  ) {}
+  ) {
+    this.errorLogin = false;
+  }
 
   ngOnInit(): void {
     this.generateLoginForm();
@@ -48,20 +51,28 @@ export class LoginFormComponent implements OnInit {
     }
 
     this.authService.login(this.loginForm.value).subscribe({
-      next: (resp: any) => {
-        console.log('RESPONSE***', resp);
+      next: ({ data, token }: any) => {
+        this.storageService.setValue('token', token);
+        this.storageService.setValue('username', data.name);
+
+        this.onReset();
+        this.redirect();
       },
       error: (error) => {
+        this.errorLogin = !this.errorLogin;
+        this.showLoginError();
         console.log(error);
       },
     });
-
-    // TODO: move both call inside success
-    this.onReset();
-    this.redirect();
   }
 
   public onReset(): void {
     this.loginForm.reset();
+  }
+
+  public showLoginError(): void {
+    setTimeout(() => {
+      this.errorLogin = !this.errorLogin;
+    }, 4000);
   }
 }
