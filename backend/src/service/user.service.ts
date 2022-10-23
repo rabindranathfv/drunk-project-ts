@@ -27,9 +27,14 @@ class UserService {
     }
   }
 
-  public async findAllUser(): Promise<User[]> {
+  public async findAllUser(query: any): Promise<User[]> {
     try {
-      const users: User[] = await this.users.find();
+      const limit = query.limit || 10;
+      const page = query.page || 1;
+      const users: User[] = await this.users
+        .find()
+        .limit(limit * 1)
+        .skip(page * limit);
       return users;
     } catch (error) {
       throw new Error('there is some troubles try to find all users');

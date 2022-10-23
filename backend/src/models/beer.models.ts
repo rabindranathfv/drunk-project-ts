@@ -14,8 +14,6 @@ import {
   Ingredients,
 } from './../interfaces/beer.interface';
 
-// import { transformFoodPairing } from '../utils/transformFoodPairing';
-
 const VolumeSchema = new Schema<Volume>({
   value: {
     type: Number,
@@ -96,6 +94,7 @@ const AmountSchema = new Schema<Amount>({
 const MaltSchema = new Schema<Malt>({
   name: {
     type: String,
+    unique: true
   },
   amount: {
     type: AmountSchema,
@@ -107,17 +106,19 @@ const HopsSchema = new Schema<Hops>({
     type: String,
     enum: Object.values(addDef),
     set: (val: string) => {
-      if (!Object.values(addDef).includes(val as addDef)) {
-        return addDef.neutral;
-      }
-      return val;
+      return !Object.values(addDef).includes(val as addDef) ? addDef.neutral : val;
     },
   },
   attribute: {
     type: [String],
     enum: Object.values(attributeDef),
+    trim: true,
     set: (val: string) => {
-      return val.replace(/[^a-zA-Z ]/g,'').trim().split(' ').filter(v=>v).map(v=>v.toLowerCase())
+      return val
+        .replace(/[^a-zA-Z ]/g, '')
+        .split(' ')
+        .filter((v) => v)
+        .map((v) => v.toLowerCase());
     },
   },
 });

@@ -7,12 +7,14 @@ import morgan from 'morgan';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import displayRoutes from 'express-routemap';
+import rTracer from 'cls-rtracer';
 
 import { NODE_ENV, PORT, LOG_FORMAT } from './config/config';
 import { corsConfig } from './config/cors.config';
 import { Routes } from './interfaces/route.interface';
 
 import errorMiddleware from './middleware/error.middleware';
+import { rateLimiterUsingThirdParty } from './middleware/rateLimiter.middleware';
 import { logger, stream } from './utils/logger';
 import { optionsSwagger } from './config/swagger.config';
 
@@ -69,6 +71,8 @@ class App {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
+    this.app.use(rateLimiterUsingThirdParty);
+    this.app.use(rTracer.expressMiddleware());
   }
 
   private initializeRoutes(routes: Routes[]) {

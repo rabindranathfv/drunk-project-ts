@@ -1,1 +1,8 @@
 node_modules/
+build
+test
+coverage
+.husky
+jest.config.js
+sample.env
+.prettierrc

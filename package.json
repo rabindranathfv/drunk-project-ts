@@ -1,0 +1,28 @@
+{
+  "name": "drunk-project-ts",
+  "version": "1.0.0",
+  "description": "drunk app as technical challenge from BDEO",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run frontend && npm run backend",
+    "frontend": "cd frontend/ && npm start &",
+    "backend": "cd ../backend/ && npm start &"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rabindranathfv/drunk-project-ts.git"
+  },
+  "keywords": [
+    "node",
+    "typescript",
+    "angular",
+    "mongo",
+    "test"
+  ],
+  "author": "rabindranath ferreira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rabindranathfv/drunk-project-ts/issues"
+  },
+  "homepage": "https://github.com/rabindranathfv/drunk-project-ts#readme"
+}

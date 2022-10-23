@@ -1,10 +1,11 @@
-// import { HttpException } from '../exceptions/HttpException';
-import BeerModel from './../models/beer.models';
 import axios, { AxiosResponse } from 'axios';
-import { Beer } from '../interfaces/beer.interface';
+
 import { logger } from '../utils/logger';
 import { HttpException } from '../exceptions/HttpException';
 import { isEmpty } from '../utils/isEmpty';
+
+import BeerModel from './../models/beer.models';
+import { Beer, Malt } from '../interfaces/beer.interface';
 
 class BeerService {
   public beers = BeerModel;
@@ -30,9 +31,14 @@ class BeerService {
     }
   }
 
-  public async getAllBeers() {
+  public async getAllBeers(query: any) {
     try {
-      const beers: Beer[] = await this.beers.find();
+      const limit = query.limit || 10;
+      const page = query.page || 1;
+      const beers: Beer[] = await this.beers
+        .find()
+        .limit(limit * 1)
+        .skip(page * limit);
       return beers;
     } catch (error) {
       throw new Error('there is some troubles try to getAllBeers');
@@ -49,6 +55,75 @@ class BeerService {
       return findBeer;
     } catch (error) {
       throw new HttpException(500, 'Server side Error troubles for get specific Beer');
+    }
+  }
+
+  public async getBeerFilterByNameOrIngridients(query: any): Promise<Beer[] | null> {
+    try {
+      if (isEmpty(query)) throw new HttpException(400, 'query is empty');
+      console.log('SERVICE getBeerFilterByNameOrIngridients***', query);
+      const { name, ingredients } = query;
+
+      let queryArray = [];
+      if (name && name !== '') {
+        queryArray.push({ name: { $regex: '.*' + name + '.*', $options: 'i' } });
+      }
+      if (ingredients && ingredients !== '') {
+        queryArray.push({
+          'ingredients.malt.name': { $regex: '.*' + ingredients + '.*', $options: 'i' },
+        });
+      }
+      const queryDB = {
+        $or: [...queryArray],
+      };
+      const findBeers = await this.beers.find(queryDB);
+
+      return findBeers;
+    } catch (error) {
+      throw new HttpException(500, 'Server side Error troubles for filters on beers');
+    }
+  }
+
+  public async getBeersTopIngridients(): Promise<Beer[] | null> {
+    try {
+      const findBeer: Beer[] | null = await this.beers.find({ 'ingredients.malt': { $size: 5 } });
+
+      return findBeer;
+    } catch (error) {
+      throw new HttpException(500, 'Server side Error troubles for top ingridients in beers');
+    }
+  }
+
+  public async getBeersBySearch(textSearch: string): Promise<any> {
+    try {
+      if (isEmpty(textSearch)) throw new HttpException(400, 'serach field is empty');
+
+      const queryDB = [
+        {
+          $match: {
+            $or: [
+              { name: { $regex: '.*' + textSearch + '.*', $options: 'i' } },
+              { 'ingredients.malt.name': { $regex: '.*' + textSearch + '.*', $options: 'i' } },
+            ],
+          },
+        },
+        { $project: { name: 1, 'ingredients.malt.name': 1, _id: 0 } },
+      ];
+      const findBeers: Beer[] | null = await this.beers.aggregate(queryDB);
+
+      const suggestionOptions = findBeers?.map(({ name, ingredients }: Beer) => {
+        const maltNamesCoincidences = ingredients.malt.filter(({ name }: Malt) => {
+          return name.toLowerCase().includes(textSearch.trim().toLowerCase());
+        });
+        return {
+          name,
+          maltNames: maltNamesCoincidences,
+        };
+      });
+
+      return suggestionOptions;
+    } catch (error) {
+      throw new HttpException(500, 'Server side Error troubles for search beer by parameters');
     }
   }
 }

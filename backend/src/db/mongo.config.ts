@@ -15,6 +15,7 @@ export const dbConnection = async () => {
     await connect(configConnection.url, configConnection.options as ConnectOptions);
     logger.info(`=================================`);
     logger.info('=== DB connected Sucessfully ====');
+    logger.info(`========== ${DB_CNN} ============`);
     logger.info(`=================================`);
   } catch (error) {
     logger.error(error);
