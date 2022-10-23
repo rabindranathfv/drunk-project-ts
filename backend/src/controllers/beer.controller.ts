@@ -62,7 +62,6 @@ class BeerController {
 
   public getBeerFilterByNameOrIngridientsCtrl = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log('QUERY PARAMS***', req.query);
       const findBeersData: Beer[] | null = await this.beerService.getBeerFilterByNameOrIngridients(req.query);
 
       res.status(200).json({ ok: true, data: findBeersData, message: `getBeerFilterByNameOrIngridients succesfully` });
@@ -75,8 +74,7 @@ class BeerController {
 
   public getBeersTopIngridientsCtrl = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log('QUERY PARAMS***', req.query);
-      const findBeersData: Beer[] | null = await this.beerService.getBeersTopIngridients(req.query);
+      const findBeersData: Beer[] | null = await this.beerService.getBeersTopIngridients();
 
       res.status(200).json({ ok: true, data: findBeersData, message: `getBeersTopIngridients succesfully` });
     } catch (error) {
@@ -88,7 +86,7 @@ class BeerController {
 
   public getBeersBySearchCtrl = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const findBeersData: Beer[] | null = await this.beerService.getBeersBySearch(req.query);
+      const findBeersData = await this.beerService.getBeersBySearch(req.params.text);
 
       res.status(200).json({ ok: true, data: findBeersData, message: `getBeersBySearch succesfully` });
     } catch (error) {

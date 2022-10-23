@@ -19,11 +19,7 @@ RUN npm install
 
 ENV NODE_ENV=production
 
-run npm run build-tsc
-
-RUN cd ./build
-
-RUN ls -alt ./build/
+RUN npm run build-tsc
 
 # Expose the port the app runs in
 EXPOSE 3000
