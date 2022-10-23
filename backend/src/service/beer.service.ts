@@ -31,9 +31,14 @@ class BeerService {
     }
   }
 
-  public async getAllBeers() {
+  public async getAllBeers(query: any) {
     try {
-      const beers: Beer[] = await this.beers.find();
+      const limit = query.limit || 10;
+      const page = query.page || 1;
+      const beers: Beer[] = await this.beers
+        .find()
+        .limit(limit * 1)
+        .skip(page * limit);
       return beers;
     } catch (error) {
       throw new Error('there is some troubles try to getAllBeers');

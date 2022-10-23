@@ -39,7 +39,7 @@ class UserController {
 
   public getUsersCtrl = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const findAllUsersData: User[] = await this.userService.findAllUser();
+      const findAllUsersData: User[] = await this.userService.findAllUser(req.query);
 
       res.status(200).json({ ok: true, data: findAllUsersData, message: 'findAll all Users successfully' });
     } catch (error) {

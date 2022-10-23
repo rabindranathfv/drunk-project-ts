@@ -37,7 +37,7 @@ class BeerController {
 
   public getAllBeersCtrl = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const beers = await this.beerService.getAllBeers();
+      const beers = await this.beerService.getAllBeers(req.query);
       res.status(201).json({ ok: true, data: beers, message: `get all beers succesfully` });
     } catch (error) {
       next(error);
