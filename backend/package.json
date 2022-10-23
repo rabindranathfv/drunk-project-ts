@@ -7,7 +7,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development ts-node-dev src/index.ts",
     "start-test": "cross-env NODE_ENV=test ts-node src/index.ts",
-    "start-prod": "cross-env NODE_ENV=production node build/src/index.js",
+    "start-prod": "cross-env NODE_ENV=production node build/index.js",
     "build-tsc": "tsc",
     "test": "jest --watchAll --testPathIgnorePatterns test/functionalTest.spec.ts",
     "test-single": "jest",

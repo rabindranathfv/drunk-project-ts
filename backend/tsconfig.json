@@ -4,6 +4,7 @@
     "target": "es2021",
     "module": "commonjs",
     "moduleResolution": "node",
+    "rootDir": "./src",
     "outDir": "./build",
     "typeRoots": ["node_modules/@types"],
     "resolveJsonModule": true,
@@ -21,8 +22,7 @@
     "src/**/*.ts"],
   "exclude": [
     "node_modules",
-    "src/logs",
-    "src/test",
+    "test/*",
     "jest.config.js"
   ]
 }

@@ -1,5 +1,7 @@
 # Create image based on the official Node 6 image from the dockerhub
-FROM node:latest
+FROM node:16-alpine
+
+RUN npm install -g ts-node
 
 # Create a directory where our app will be placed
 RUN mkdir -p /usr/src/app
@@ -8,18 +10,23 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Copy dependency definitions
-COPY package.json .
+COPY package*.json ./
+# Get all the code needed to run the app
+COPY . .
 
 # Install dependecies
 RUN npm install
 
-RUN npm build-tsc
+ENV NODE_ENV=production
 
-# Get all the code needed to run the app
-COPY ./ .
+run npm run build-tsc
+
+RUN cd ./build
+
+RUN ls -alt ./build/
 
 # Expose the port the app runs in
 EXPOSE 3000
 
 # Serve the app
-CMD ["npm", "run", "start-prod"]
+CMD ["npm", "run" ,"start-prod"]
