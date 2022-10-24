@@ -22,8 +22,6 @@ export class BeerService {
     );
   }
 
-  // return (this.http.post(`${environment.apiUrl}${this.path}/`, body)).pipe(catchError(this.handleError));
-
   public getAllBeers(): Observable<any> {
     return this.http
       .get(`${environment.apiUrl}${this.path}/`)
@@ -33,6 +31,12 @@ export class BeerService {
   public getBeer(id: string | number): Observable<any> {
     return this.http
       .get(`${environment.apiUrl}${this.path}/${id}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  public loadBeers(): Observable<any> {
+    return this.http
+      .post(`${environment.apiUrl}${this.path}`, {})
       .pipe(catchError(this.handleError));
   }
 }

@@ -1,5 +1,14 @@
-<div class="bg-light p-5 rounded">
-  <h1>Navbar example</h1>
-  <p class="lead">This example is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it will remain fixed to the top of your browser’s viewport.</p>
-  <a class="btn btn-lg btn-beer" href="/docs/5.0/components/navbar/" role="button">View navbar docs &raquo;</a>
+<div *ngIf="beers.length === 0" class="bg-light p-5 rounded">
+  <h1>Hey maybe you need to load Beers!</h1>
+  <p class="lead">The easy way to load your beers it's by click this button bellow and wait few seconds for see the Magic happen</p>
+  <ng-container *ngIf="loadMessage !== ''">
+    <p class="lead">{{ loadMessage }}</p>
+  </ng-container>
+
+  <a class="btn btn-lg btn-beer" (click)="loadBeers()" role="button">Click Me!</a>
+</div>
+
+<div *ngIf="beers.length > 0" class="bg-light p-5 rounded">
+  <h1>Hey you have enought beers!</h1>
+  <p class="lead">Let's go and search and leer more about Beers!</p>
 </div>
