@@ -1,6 +1,6 @@
-<ul class="list-group">
-  <app-list-item></app-list-item>
-  <app-list-item></app-list-item>
-  <app-list-item></app-list-item>
-  <app-list-item></app-list-item>
+<ul *ngIf="beerTopIng.length > 0" class="list-group">
+  <p class="list-title">Top Beer Ingredients</p>
+  <ng-container *ngFor="let beer of beerTopIng">
+    <app-list-item [item]="beer"></app-list-item>
+  </ng-container>
 </ul>

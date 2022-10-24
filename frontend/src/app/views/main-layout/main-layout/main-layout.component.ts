@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Beer } from 'src/app/interfaces/beer.interface';
+
 import { BeerService } from 'src/app/services/beer/beer.service';
+
+import { Beer } from 'src/app/interfaces/beer.interface';
 
 @Component({
   selector: 'app-main-layout',
@@ -22,6 +24,7 @@ export class MainLayoutComponent implements OnInit {
     this.beerService.getAllBeers().subscribe({
       next: ({ data }) => {
         this.beers = data;
+        this.beerService.onDataReceived(this.beers);
       },
       error: (error) => {
         console.log(error);

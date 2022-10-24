@@ -1,15 +1,18 @@
-<!-- class="container-info" *ngIf="!loading">-->
-<div class="container-info">
+<div *ngIf="beers.length > 0" class="container-info">
   <div class="container-items">
-    <app-card> </app-card>
-    <app-card> </app-card>
-    <app-card> </app-card>
-    <app-card> </app-card>
-    <app-card> </app-card>
+    <ng-container *ngFor="let beer of beers">
+      <app-card [data]="beer"> </app-card>
+    </ng-container>
   </div>
 
   <!-- top 10 repeted ingridients -->
   <div class="container-top-items">
-    <app-list></app-list>
+    <app-list [beerTopIng]="beerTopIng"></app-list>
+  </div>
+</div>
+
+<div *ngIf="beers.length === 0" class="container-empty">
+  <div>
+    <app-no-data></app-no-data>
   </div>
 </div>

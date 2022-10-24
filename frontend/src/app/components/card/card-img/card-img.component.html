@@ -1,1 +1,7 @@
-<img class="product-img" src={{noProduct}} alt="Beer description"  />
+<div class="container-product-img" *ngIf="img !== '';">
+  <img (click)="redirectById(id)" class="product-img" src={{img}} alt="Beer description"  />
+</div>
+<div *ngIf="img === ''">
+  <img (click)="redirectById(id)" class="product-no-img" src={{noProduct}} alt="no Beer description"  />
+</div>
+
