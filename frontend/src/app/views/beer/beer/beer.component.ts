@@ -16,6 +16,7 @@ export class BeerComponent implements OnInit {
 
   ngOnInit(): void {
     this.consumeBeerObs();
+    this.beerService.onDataDetailReceived(true);
     this.getTopIngredients();
   }
 

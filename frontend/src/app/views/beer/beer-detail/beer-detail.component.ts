@@ -17,14 +17,12 @@ export class BeerDetailComponent implements OnInit {
   constructor(
     private location: Location,
     private beerService: BeerService,
-    private activatedRoute: ActivatedRoute
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe((params) => {
-      console.log('PARAMS IN BEER DETAIL =======', params);
-      // this.beerId = params.orderby;
-    });
+    this.beerService.onDataDetailReceived(false);
+    this.beerId = this.route.snapshot.paramMap.get('id') ?? '';
     this.getBeerByid();
   }
 
@@ -36,15 +34,13 @@ export class BeerDetailComponent implements OnInit {
    * getBeerByid
    */
   public getBeerByid() {
-    this.beerService
-      .getBeer(this.beerId ?? '6355d731f06094470939ea4e')
-      .subscribe({
-        next: ({ ok, data }) => {
-          this.beer = ok ? data : {};
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
+    this.beerService.getBeer(this.beerId).subscribe({
+      next: ({ ok, data }) => {
+        this.beer = ok ? data : {};
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 }

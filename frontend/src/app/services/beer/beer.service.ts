@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 export class BeerService {
   public path = 'beer';
   public beerObs: BehaviorSubject<Beer[]> = new BehaviorSubject<Beer[]>([]);
+  public beerDetail: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {}
 
@@ -55,4 +56,6 @@ export class BeerService {
   }
 
   public onDataReceived = (beers: Beer[] | []) => this.beerObs.next(beers);
+
+  public onDataDetailReceived = (detail: boolean) => this.beerDetail.next(detail);
 }

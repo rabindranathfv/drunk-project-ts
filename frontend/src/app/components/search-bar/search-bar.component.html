@@ -1,4 +1,4 @@
-<div class="row m-2">
+<div *ngIf="canShow" class="row m-2">
   <div class="col">
       <label for="" class="">Search Beer by name or Ingredients</label>
       <input #searchTerm name="" id="" (keyup)="findBeers(searchTerm.value)" class="form-control" type="text" value="" placeholder="Enter a name of a beer for search coincidences by ingridients or name">
