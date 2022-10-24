@@ -12,7 +12,12 @@
       </ul>
         <div class="container-fluid username-content">
           <span id="display-username" class="navbar-text align-items-left">
-            <i class="far fa-user"></i> USERNAME
+            <ng-container *ngIf="this.username !== ''">
+              <i class="far fa-user"></i> {{ this.username }}
+            </ng-container>
+          </span>
+          <span (click)="logout()" *ngIf="logoutActive" id="display-logout" class="navbar-text align-items-left mr-2">
+            <i class="fas fa-sign-out-alt"></i> Logout
           </span>
         </div>
     </div>

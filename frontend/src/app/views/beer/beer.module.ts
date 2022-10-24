@@ -13,6 +13,8 @@ import { CardActionsComponent } from 'src/app/components/card/card-actions/card-
 import { CardImgComponent } from 'src/app/components/card/card-img/card-img.component';
 import { CardTitleComponent } from 'src/app/components/card/card-title/card-title.component';
 import { CardComponent } from 'src/app/components/card/card/card.component';
+import { NoDataComponent } from 'src/app/components/no-data/no-data.component';
+import { CardContentComponent } from 'src/app/components/card-content/card-content.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { CardComponent } from 'src/app/components/card/card/card.component';
     CardTitleComponent,
     CardImgComponent,
     CardActionsComponent,
+    NoDataComponent,
+    CardContentComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +47,8 @@ import { CardComponent } from 'src/app/components/card/card/card.component';
     CardTitleComponent,
     CardImgComponent,
     CardActionsComponent,
+    NoDataComponent,
+    CardContentComponent,
   ],
   providers: [],
 })

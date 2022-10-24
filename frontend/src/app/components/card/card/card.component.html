@@ -1,11 +1,12 @@
 <!-- product card -->
 <div class="product-card">
-  <!-- image component using no product image -->
-  <app-card-img></app-card-img>
+  <app-card-img [img]="data.image_url" [id]="data.id"></app-card-img>
 
   <!-- title -->
-  <app-card-title></app-card-title>
+  <app-card-title [title]="fullName"></app-card-title>
 
   <!-- buttons actions  -->
-  <app-card-actions> </app-card-actions>
+  <app-card-actions [id]="data.id"></app-card-actions>
+
+  <app-card-content [ph]="data.ph" [attenuationLevel]="data.attenuation_level"></app-card-content>
 </div>

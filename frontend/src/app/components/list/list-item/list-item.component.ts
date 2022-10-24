@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { Beer } from 'src/app/interfaces/beer.interface';
 
 @Component({
   selector: 'app-list-item',
@@ -6,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-item.component.scss']
 })
 export class ListItemComponent implements OnInit {
-
+  @Input() item: any = {};
   constructor() { }
 
   ngOnInit(): void {

@@ -103,7 +103,7 @@ class BeerRoute implements Routes {
     this.router.get(`${this.path}/search/:text`, validateSesion, this.beerController.getBeersBySearchCtrl);
 
     // TODO: Add DOC
-    this.router.get(`${this.path}/ingridients`, validateSesion, this.beerController.getBeersTopIngridientsCtrl);
+    this.router.get(`${this.path}/ingredients`, validateSesion, this.beerController.getBeersTopIngridientsCtrl);
 
     // TODO: Add DOC
     this.router.get(`${this.path}/filter`, validateSesion, this.beerController.getBeerFilterByNameOrIngridientsCtrl);
@@ -141,10 +141,10 @@ class BeerRoute implements Routes {
      *                    $ref: '#/components/schemas/User'
      *                  description: users information
      */
-    this.router.get(`${this.path}`, validateSesion , this.beerController.getAllBeersCtrl);
+    this.router.get(`${this.path}`, validateSesion, this.beerController.getAllBeersCtrl);
 
     // TODO: Add DOC
-    this.router.get(`${this.path}/:id`, validateSesion , this.beerController.getBeerByIdCtrl);
+    this.router.get(`${this.path}/:id`, validateSesion, this.beerController.getBeerByIdCtrl);
   }
 }
 

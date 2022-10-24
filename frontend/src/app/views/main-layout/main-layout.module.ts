@@ -9,6 +9,10 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { SearchBarComponent } from 'src/app/components/search-bar/search-bar.component';
 
 import { BeerModule } from './../beer/beer.module';
+import { UserService } from 'src/app/services/user/user.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { BeerService } from 'src/app/services/beer/beer.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,6 @@ import { BeerModule } from './../beer/beer.module';
     JumbotronComponent,
     SearchBarComponent,
   ],
-  providers: [],
+  providers: [UserService, StorageService, AuthService, BeerService],
 })
 export class MainLayoutModule {}

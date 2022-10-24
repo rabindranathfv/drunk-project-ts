@@ -61,7 +61,6 @@ class BeerService {
   public async getBeerFilterByNameOrIngridients(query: any): Promise<Beer[] | null> {
     try {
       if (isEmpty(query)) throw new HttpException(400, 'query is empty');
-      console.log('SERVICE getBeerFilterByNameOrIngridients***', query);
       const { name, ingredients } = query;
 
       let queryArray = [];

@@ -1,19 +1,50 @@
-import { addType, attributeType, TempUnits, VolumeUnits, weightUnits } from '../types/types';
+export type VolumeUnits = 'litres';
+export type TempUnits = 'celsius';
+export type weightUnits = 'kilograms' | 'grams';
+
+export type addType = 'start' | 'middle' | 'end' | 'dry hop' | 'neutral';
+export type attributeType = 'aroma' | 'bitter' | 'flavour' | 'twist';
+
+// Enums Def
+export enum VolumeDef {
+  litres = 'litres',
+}
+export enum TempDef {
+  celsius = 'celsius',
+}
+export enum weightDef {
+  kilograms = 'kilograms',
+  grams = 'grams',
+}
+
+export enum addDef {
+  start = 'start',
+  middle = 'middle',
+  dryhop = 'dry hop',
+  end = 'end',
+  neutral = 'neutral',
+}
+export enum attributeDef {
+  aroma = 'aroma',
+  bitter = 'bitter',
+  flavour = 'flavour',
+  twist = 'twist',
+}
 
 // Compose interfaces
 export interface Temperature {
   value: number;
-  unit: TempUnits;
+  units: TempUnits;
 }
 
 export interface Volume {
   value: number;
-  unit: VolumeUnits;
+  units: VolumeUnits;
 }
 
 export interface BoilVolume {
   value: number;
-  unit: VolumeUnits;
+  units: VolumeUnits;
 }
 
 // compose interfaces for Method
@@ -36,7 +67,7 @@ export interface Method {
 // Compose interfaces for ingridients
 export interface Amount {
   value: number;
-  unit: weightUnits;
+  units: weightUnits;
 }
 
 export interface Malt {

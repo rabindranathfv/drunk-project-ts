@@ -1,16 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
+import { BeerService } from 'src/app/services/beer/beer.service';
+
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit {
-  constructor() {}
+  public canShow: boolean = false;
+  constructor(private beerService: BeerService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.showSearch();
+  }
 
-  findBeers(searchTerm: string) {
+  public findBeers(searchTerm: string) {
     if (searchTerm.length > 0) {
       // this.loading = true;
       console.log(searchTerm);
@@ -22,5 +27,11 @@ export class SearchBarComponent implements OnInit {
       //     this.loading = false;
       //   });
     }
+  }
+
+  public showSearch() {
+    this.beerService.beerDetail.subscribe((searchActive) => {
+      this.canShow = searchActive;
+    });
   }
 }

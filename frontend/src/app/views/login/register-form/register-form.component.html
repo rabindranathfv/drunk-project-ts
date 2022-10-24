@@ -1,5 +1,9 @@
 
 <h3 id="register-title">Registro</h3>
+<ng-container *ngIf="registered">
+    <p id="register-msg"> Register succesfully {{ this.user.name }}, you can Sign in with your email and password</p>
+</ng-container>
+
 <form id="register-form" [formGroup]="registerForm" (ngSubmit)="submitRegister()">
     <div class="form-group mb-2">
         <input

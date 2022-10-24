@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  public path = 'user';
+  public path = 'auth';
 
   constructor(private http: HttpClient) { }
 
@@ -22,10 +22,6 @@ export class AuthService {
 
   public login(body: any): Observable<any> {
     return (this.http.post(`${environment.apiUrl}${this.path}/login`, body)).pipe(catchError(this.handleError));
-  }
-
-  public register(body: any): Observable<any> {
-    return (this.http.post(`${environment.apiUrl}${this.path}/register`, body)).pipe(catchError(this.handleError));
   }
 
   public renewToken(): Observable<any> {
