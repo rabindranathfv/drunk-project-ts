@@ -94,7 +94,7 @@ export interface Beer {
   tagline: string;
   first_brewed: string;
   description: string;
-  image_url: URL;
+  image_url: string;
   abv: number;
   ibu: number;
   target_fg: number;

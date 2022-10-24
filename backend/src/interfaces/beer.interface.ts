@@ -1,20 +1,19 @@
-import { Url } from 'url';
 import { addType, attributeType, TempUnits, VolumeUnits, weightUnits } from '../types/types';
 
 // Compose interfaces
 export interface Temperature {
   value: number;
-  units: TempUnits;
+  unit: TempUnits;
 }
 
 export interface Volume {
   value: number;
-  units: VolumeUnits;
+  unit: VolumeUnits;
 }
 
 export interface BoilVolume {
   value: number;
-  units: VolumeUnits;
+  unit: VolumeUnits;
 }
 
 // compose interfaces for Method
@@ -37,7 +36,7 @@ export interface Method {
 // Compose interfaces for ingridients
 export interface Amount {
   value: number;
-  units: weightUnits;
+  unit: weightUnits;
 }
 
 export interface Malt {

@@ -13,6 +13,7 @@ import { Beer } from 'src/app/interfaces/beer.interface';
 export class BeerDetailComponent implements OnInit {
   public beer: Partial<Beer> = {};
   public beerId: string = '';
+  public beerImg: string = '';
 
   constructor(
     private location: Location,
@@ -30,17 +31,33 @@ export class BeerDetailComponent implements OnInit {
     this.location.back();
   }
 
-  /**
-   * getBeerByid
-   */
   public getBeerByid() {
     this.beerService.getBeer(this.beerId).subscribe({
       next: ({ ok, data }) => {
-        this.beer = ok ? data : {};
+        if (ok) {
+          this.beer = data;
+          this.beerImg = data.image_url ?? 'assets/img/no-image.jpg';
+          this.loadBearImage(data.image_url ?? '');
+        }
       },
       error: (error) => {
         console.log(error);
       },
+    });
+  }
+
+  /**
+   * loadBearImage
+   */
+  public loadBearImage(url: string) {
+    if (url === '') return;
+
+    this.beerService.getImgBeer(url).subscribe((img) => {
+      console.log(
+        '🚀 ~ file: beer-detail.component.ts ~ line 49 ~ BeerDetailComponent ~ this.beerService.getImgBeer ~ img',
+        img
+      );
+      // this.beerImg = img;
     });
   }
 }

@@ -1,0 +1,27 @@
+.btn-back {
+  height: 40px;
+  width: 40px;
+  background: #d4a326;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  padding-bottom: 3%;
+}
+
+.container-beer-section{
+  padding-top: 1%;
+}
+
+.img-beer {
+  width: 100%;
+  height: 194px;
+  width: 25%;
+}
+
+.container-beer-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 7%;
+  padding-bottom: 3%;
+}

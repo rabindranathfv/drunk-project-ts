@@ -19,9 +19,13 @@ const VolumeSchema = new Schema<Volume>({
     type: Number,
     required: true,
   },
-  units: {
+  unit: {
     type: String,
     enum: Object.values(VolumeDef),
+    set: () => {
+      const elemets = Object.values(VolumeDef);
+      return elemets[Math.floor(Math.random() * (elemets.length - 1)) + 0];
+    },
   },
 });
 
@@ -30,7 +34,7 @@ const BoilVolumeSchema = new Schema<BoilVolume>({
     type: Number,
     required: true,
   },
-  units: {
+  unit: {
     type: String,
     enum: Object.values(VolumeDef),
   },
@@ -43,9 +47,13 @@ const TemperatureSchema = new Schema<Temperature>({
       return !value ? 0 : value;
     },
   },
-  units: {
+  unit: {
     type: String,
     enum: Object.values(TempDef),
+    set: () => {
+      const elemets = Object.values(TempDef);
+      return elemets[Math.floor(Math.random() * (elemets.length - 1)) + 0];
+    },
   },
 });
 
@@ -85,16 +93,20 @@ const AmountSchema = new Schema<Amount>({
   value: {
     type: Number,
   },
-  units: {
+  unit: {
     type: String,
     enum: Object.values(weightDef),
+    set: () => {
+      const elemets = Object.values(weightDef);
+      return elemets[Math.floor(Math.random() * (elemets.length - 1)) + 0];
+    },
   },
 });
 
 const MaltSchema = new Schema<Malt>({
   name: {
     type: String,
-    unique: true
+    unique: true,
   },
   amount: {
     type: AmountSchema,

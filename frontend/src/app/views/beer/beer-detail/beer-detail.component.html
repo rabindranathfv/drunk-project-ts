@@ -1,8 +1,90 @@
 <div>
-  <p>beer-detail works!</p>
-  <button type="button" class="btn btn-primary" (click)="getBack()"> ATRAS </button>
-
   <div>
-    <pre>{{ beer | json }}</pre>
+    <button type="button" class="btn btn-primary btn-back" (click)="getBack()"><i class="fas fa-backward"></i></button>
+    <div class="container-beer-section">
+      <h4>General Beer's Information</h4>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 card">
+            <div class="row g-0">
+              <div class="col-md-4 container-beer-img">
+                <img src={{beerImg}} class="img-fluid rounded-start img-beer" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ beer.name }}, {{ beer.tagline }}</h5>
+                  <p class="card-text"><small class="text-muted">Date: {{ beer.first_brewed }}</small></p>
+                  <p class="card-text">{{ beer.description }}</p>
+                  <ng-container *ngFor="let food of beer.food_pairing">
+                    <p class="card-text"><i class="fas fa-utensils"></i> {{ food }}</p>
+                  </ng-container>
+                  <p class="card-text"><i class="fas fa-info-circle"></i> Tips: {{ beer.brewers_tips }}</p>
+                  <p class="card-text">Contributed By: {{ beer.contributed_by }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><i class="fas fa-info-circle"></i> Ph: {{ beer.ph }}</li>
+              <li class="list-group-item"><i class="fas fa-info-circle"></i> Avb: {{ beer.abv }}</li>
+              <li class="list-group-item"><i class="fas fa-info-circle"></i> Ibu: {{ beer.ibu }}</li>
+              <li class="list-group-item"><i class="fas fa-info-circle"></i> Metric 1: {{ beer.target_fg }}</li>
+              <li class="list-group-item"><i class="fas fa-info-circle"></i> Metric 2: {{ beer.target_og }}</li>
+              <li class="list-group-item"><i class="fas fa-info-circle"></i> Ebc: {{ beer.ebc }}</li>
+              <li class="list-group-item"><i class="fas fa-info-circle"></i> srm: {{ beer.srm }}</li>
+              <li class="list-group-item"><i class="fas fa-info-circle"></i> Attenuation Level: {{ beer.attenuation_level }}</li>
+              <li class="list-group-item"><i class="fas fa-info-circle"></i> Volume: {{ beer.volume?.value }} lts</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
+
+  <hr class="divider">
+
+  <div class="container-beer-section">
+    <h4>Method</h4>
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Duration</th>
+          <th scope="col">Temp</th>
+          <th scope="col">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mash of beer.method?.mash_temp">
+          <td>{{ mash.duration }}</td>
+          <td>{{ mash.temp.value }}</td>
+          <td>Celciuos</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <div class="container-beer-section">
+    <h4>Ingridients</h4>
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">name</th>
+          <th scope="col">value</th>
+          <th scope="col">units</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ing of beer.ingredients?.malt">
+          <td>{{ ing.name }}</td>
+          <td>{{ ing.amount.value }}</td>
+          <td>litrs </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
